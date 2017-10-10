@@ -5,10 +5,18 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports = (event) => {
 
+    const invoiceId = event.pathParameters.id;
+
+    return remove(invoiceId);
+
+};
+
+function remove(invoiceId) {
+
     const params = {
         TableName: 'invoices',
         Key: {
-            id: event.pathParameters.id
+            id: invoiceId
         }
     };
 
@@ -21,5 +29,4 @@ module.exports = (event) => {
             resolve(params.Key);
         });
     });
-
-};
+}

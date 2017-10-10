@@ -23,7 +23,7 @@ module.exports = (event) => {
 
             console.log('Updated Invoice response ', JSON.stringify(data));
 
-            resolve(error, params.Item);
+            resolve(params.Item);
         });
     });
 };

@@ -5,20 +5,29 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports = (event) => {
 
-  const params = {
-    TableName: 'invoices',
-    Key: {
-      id: event.pathParameters.id
-    }
-  };
+    const invoiceId = event.pathParameters.id;
 
-  return new Promise((resolve, reject) => {
+    return findInvoiceById(invoiceId);
 
-      dynamoDb.get(params, (error, data) => {
-          if (error) {
-              reject(error);
-          }
-          resolve(data.Item);
-      });
-  });
 };
+
+
+function findInvoiceById(invoiceId) {
+
+    const params = {
+        TableName: 'invoices',
+        Key: {
+            id: invoiceId
+        }
+    };
+
+    return new Promise((resolve, reject) => {
+
+        dynamoDb.get(params, (error, data) => {
+            if (error) {
+                reject(error);
+            }
+            resolve(data.Item);
+        });
+    });
+}
