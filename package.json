@@ -1,7 +1,7 @@
 {
-  "name": "serverless-crud",
+  "name": "invoices-api",
   "version": "0.1.0",
-  "description": "Serverless CRUD service",
+  "description": "Majan Invoices API",
   "scripts": {
     "test": "ava tests --verbose"
   },
